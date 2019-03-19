@@ -1,0 +1,16 @@
+$self{charset} = 'UTF-8';
+
+$self{texts} = {
+  'From'                        => 'De',
+  'PO Number'                   => 'Número Orden de Compra',
+  'To'                          => 'Hasta ',
+};
+
+$self{subs} = {
+  'continue'                    => 'continue',
+  'fuse_pos'                    => 'fuse_pos',
+  'po_list'                     => 'po_list',
+};
+
+1;
+

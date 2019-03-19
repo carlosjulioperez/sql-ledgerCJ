@@ -1,0 +1,56 @@
+$self{charset} = 'UTF-8';
+
+$self{texts} = {
+  'Cost Price'                  => 'Costo de Precio',
+  'Cost Price '                 => 'Costo de Precio',
+  'Date'                        => 'Fecha',
+  'Incluir en Reporte'          => 'Incluir en Reporte',
+  'Item'                        => 'Item',
+  'Item '                       => 'Item',
+  'Linea Grupo'                 => 'Línea Grupo',
+  'Linea Item'                  => 'Línea Item',
+  'Linea Item '                 => 'Línea Item',
+  'No.'                         => 'No.',
+  'Qty'                         => 'Cantidad',
+  'Qty '                        => 'Cantidad',
+  'Reporte de Utilidad por Lineas de Producto' => 'Reporte de Utilidad por Líneas de Producto',
+  'Sell Price'                  => 'Precio de venta',
+  'Sell Price '                 => 'Precio de Venta',
+  'Subtotal'                    => 'Subtotal',
+  'TransID'                     => 'ID Transferencia',
+};
+
+$self{subs} = {
+  'add_button'                  => 'add_button',
+  'begin_data_row'              => 'begin_data_row',
+  'begin_heading_row'           => 'begin_heading_row',
+  'begin_total_row'             => 'begin_total_row',
+  'continue'                    => 'continue',
+  'end_form'                    => 'end_form',
+  'end_page'                    => 'end_page',
+  'end_row'                     => 'end_row',
+  'end_table'                   => 'end_table',
+  'print_checkbox'              => 'print_checkbox',
+  'print_criteria'              => 'print_criteria',
+  'print_form_date'             => 'print_form_date',
+  'print_form_text'             => 'print_form_text',
+  'print_header'                => 'print_header',
+  'print_heading'               => 'print_heading',
+  'print_hidden'                => 'print_hidden',
+  'print_integer'               => 'print_integer',
+  'print_number'                => 'print_number',
+  'print_select'                => 'print_select',
+  'print_text'                  => 'print_text',
+  'print_title'                 => 'print_title',
+  'report'                      => 'report',
+  'rpt_dec'                     => 'rpt_dec',
+  'rpt_hdr'                     => 'rpt_hdr',
+  'rpt_int'                     => 'rpt_int',
+  'rpt_txt'                     => 'rpt_txt',
+  'search'                      => 'search',
+  'start_form'                  => 'start_form',
+  'start_table'                 => 'start_table',
+};
+
+1;
+

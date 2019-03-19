@@ -1,0 +1,9 @@
+Accounts
+
+General Ledger--gl.pl?action=search
+Trial Balance--rp.pl?action=report&report=trial_balance
+
+Purchasing
+
+General Ledger--gl.pl?action=search
+Trial Balance--rp.pl?action=report&report=trial_balance

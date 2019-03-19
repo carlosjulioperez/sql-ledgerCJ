@@ -1,0 +1,34 @@
+$self{charset} = 'UTF-8';
+
+$self{texts} = {
+  'Continue'                    => 'Continuar',
+};
+
+$self{subs} = {
+  'ask_renumber'                => 'ask_renumber',
+  'begin_data_row'              => 'begin_data_row',
+  'begin_form'                  => 'begin_form',
+  'begin_heading_row'           => 'begin_heading_row',
+  'begin_table'                 => 'begin_table',
+  'begin_total_row'             => 'begin_total_row',
+  'continue'                    => 'continue',
+  'do_renumber'                 => 'do_renumber',
+  'end_form'                    => 'end_form',
+  'end_page'                    => 'end_page',
+  'end_row'                     => 'end_row',
+  'end_table'                   => 'end_table',
+  'print_form_date'             => 'print_form_date',
+  'print_form_text'             => 'print_form_text',
+  'print_header'                => 'print_header',
+  'print_heading'               => 'print_heading',
+  'print_integer'               => 'print_integer',
+  'print_number'                => 'print_number',
+  'print_select'                => 'print_select',
+  'print_text'                  => 'print_text',
+  'select_parts'                => 'select_parts',
+  'select_warehouse'            => 'select_warehouse',
+  'continuar'                   => 'continue',
+};
+
+1;
+

@@ -1,0 +1,75 @@
+\documentclass[a4paper,oneside]{article}
+\usepackage[frame]{xy}
+\usepackage{tabularx}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\setlength{\voffset}{0.4cm}
+\setlength{\hoffset}{-2.0cm}
+\setlength{\topmargin}{0cm}
+\setlength{\headheight}{0.0cm}
+\setlength{\headsep}{1cm}
+\setlength{\topskip}{0pt}
+\setlength{\oddsidemargin}{1.0cm}
+\setlength{\evensidemargin}{1.0cm}
+\setlength{\textwidth}{19.2cm}
+\setlength{\textheight}{24.5cm}
+\setlength{\footskip}{1cm}
+\setlength{\parindent}{0pt}
+\renewcommand{\baselinestretch}{1}
+
+\begin{document}
+
+\fontfamily{cmss}\fontsize{9pt}{9pt}\selectfont
+
+\vspace*{-3.5cm}
+
+\parbox{\textwidth}{%
+  \parbox[b]{.42\textwidth}{%
+    <%company%>
+
+    <%address%>
+  }
+  \parbox[b]{.2\textwidth}{
+%    \includegraphics[scale=0.3]{sql-ledger}
+     \includegraphics[scale=0.3]{../<%templates%>/<%language_code%>/logo}
+  }\hfill
+  \begin{tabular}[b]{rr@{}}
+  Telephone & <%tel%>\\
+  Facsimile & <%fax%>
+  \end{tabular}
+
+  \rule[1.5em]{\textwidth}{0.5pt}
+}
+
+\centerline{\textbf{Comprobante de Egreso \# <%id%>} }
+
+\vspace*{1cm}
+
+<%name%> \hfill <%datepaid%> \hfill <%source%>
+
+\vspace{0.5cm}
+\begin{tabularx}{\textwidth}{lXrr@{}}
+\textbf{Invoice No.} & \textbf{Invoice Date}
+  & \textbf{Due} & \textbf{Applied} \\
+<%foreach invnumber%>
+<%invnumber%> & <%invdate%> \dotfill
+  & <%due%> & <%paid%> \\
+<%end invnumber%>
+\end{tabularx}
+
+\vspace{1cm}
+
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\begin{center}
+\begin{tabular}{|C{4cm}|C{4cm}|C{4cm}|C{4cm}|}
+\hline
+ & & & \\
+ & & & \\
+ & & & \\
+\hline
+Revisado & Autorizado & Conforme  & C.C. / R.U.C. \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{document}

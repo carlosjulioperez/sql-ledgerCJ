@@ -1,0 +1,31 @@
+$self{charset} = 'UTF-8';
+
+$self{texts} = {
+  'Continue'                    => 'Continuar',
+};
+
+$self{subs} = {
+  'begin_data_row'              => 'begin_data_row',
+  'begin_form'                  => 'begin_form',
+  'begin_heading_row'           => 'begin_heading_row',
+  'begin_table'                 => 'begin_table',
+  'begin_total_row'             => 'begin_total_row',
+  'continue'                    => 'continue',
+  'end_form'                    => 'end_form',
+  'end_page'                    => 'end_page',
+  'end_row'                     => 'end_row',
+  'end_table'                   => 'end_table',
+  'print_form_date'             => 'print_form_date',
+  'print_form_text'             => 'print_form_text',
+  'print_header'                => 'print_header',
+  'print_heading'               => 'print_heading',
+  'print_integer'               => 'print_integer',
+  'print_number'                => 'print_number',
+  'print_text'                  => 'print_text',
+  'ret_report'                  => 'ret_report',
+  'ret_search'                  => 'ret_search',
+  'continuar'                   => 'continue',
+};
+
+1;
+

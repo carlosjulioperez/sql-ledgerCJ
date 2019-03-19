@@ -1,0 +1,1112 @@
+=================================================
+List of tables and sequences in SQL-Ledger 2.8.11
+=================================================
+
+      Name      |   Type   | Description 
+----------------+----------+---------------------------------------------------------------------------
+ acc_trans      | table    | 
+ address        | table    | 
+ addressid      | sequence | 
+ ap             | table    | 
+ ar             | table    | 
+ assembly       | table    | 
+ assemblyid     | sequence | 
+ audittrail     | table    | 
+ bank           | table    | 
+ br             | table    | 
+ business       | table    | 
+ cargo          | table    | 
+ chart          | table    | 
+ contact        | table    | 
+ contactid      | sequence | 
+ curr           | table    | 
+ customer       | table    | 
+ customertax    | table    | 
+ defaults       | table    | 
+ department     | table    | 
+ dpt_trans      | table    | 
+ employee       | table    | 
+ exchangerate   | table    | 
+ gifi           | table    | 
+ gl             | table    | 
+ id             | sequence | 
+ inventory      | table    | 
+ inventoryid    | sequence | 
+ invoice        | table    | 
+ invoiceid      | sequence | 
+ jcitems        | table    | 
+ jcitemsid      | sequence | 
+ language       | table    | 
+ makemodel      | table    | 
+ oe             | table    | 
+ orderitems     | table    | 
+ orderitemsid   | sequence | 
+ parts          | table    | 
+ partscustomer  | table    | 
+ partsgroup     | table    | 
+ partstax       | table    | 
+ partsvendor    | table    | 
+ payment        | table    | 
+ paymentmethod  | table    | 
+ pricegroup     | table    | 
+ project        | table    | 
+ recurring      | table    | 
+ recurringemail | table    | 
+ recurringprint | table    | 
+ semaphore      | table    | 
+ shipto         | table    | 
+ sic            | table    | 
+ status         | table    | 
+ tax            | table    | 
+ translation    | table    | 
+ trf            | table    | 
+ vendor         | table    | 
+ vendortax      | table    | 
+ vr             | table    | 
+ warehouse      | table    | 
+ yearend        | table    | 
+
+(61 rows)
+
+
+==============================================
+Detail Columns and descriptions for each table
+==============================================
+
+=========
+acc_trans
+=========
+
+     Column     |       Type       |          Modifiers          
+----------------+------------------+-----------------------------
+ trans_id       | integer          | 
+ chart_id       | integer          | 
+ amount         | double precision | 
+ transdate      | date             | default ('now'::text)::date
+ source         | text             | 
+ approved       | boolean          | default true
+ fx_transaction | boolean          | default false
+ project_id     | integer          | 
+ memo           | text             | 
+ id             | integer          | 
+ cleared        | date             | 
+ vr_id          | integer          | 
+Indexes:
+    "acc_trans_chart_id_key" btree (chart_id)
+    "acc_trans_source_key" btree (lower(source))
+    "acc_trans_trans_id_key" btree (trans_id)
+    "acc_trans_transdate_key" btree (transdate)
+
+
+=======
+address
+=======
+
+  Column  |         Type          |                    Modifiers                    
+----------+-----------------------+-------------------------------------------------
+ id       | integer               | not null default nextval('addressid'::regclass)
+ trans_id | integer               | 
+ address1 | character varying(32) | 
+ address2 | character varying(32) | 
+ city     | character varying(32) | 
+ state    | character varying(32) | 
+ zipcode  | character varying(10) | 
+ country  | character varying(32) | 
+Indexes:
+    "address_pkey" PRIMARY KEY, btree (id)
+
+
+==
+ap
+==
+
+      Column      |         Type          |            Modifiers            
+------------------+-----------------------+---------------------------------
+ id               | integer               | default nextval('id'::regclass)
+ invnumber        | text                  | 
+ transdate        | date                  | default ('now'::text)::date
+ vendor_id        | integer               | 
+ taxincluded      | boolean               | default false
+ amount           | double precision      | 
+ netamount        | double precision      | 
+ paid             | double precision      | 
+ datepaid         | date                  | 
+ duedate          | date                  | 
+ invoice          | boolean               | default false
+ ordnumber        | text                  | 
+ curr             | character(3)          | 
+ notes            | text                  | 
+ employee_id      | integer               | 
+ till             | character varying(20) | 
+ quonumber        | text                  | 
+ intnotes         | text                  | 
+ department_id    | integer               | default 0
+ shipvia          | text                  | 
+ language_code    | character varying(6)  | 
+ ponumber         | text                  | 
+ shippingpoint    | text                  | 
+ terms            | smallint              | default 0
+ approved         | boolean               | default true
+ cashdiscount     | real                  | 
+ discountterms    | smallint              | 
+ waybill          | text                  | 
+ warehouse_id     | integer               | 
+ description      | text                  | 
+ onhold           | boolean               | default false
+ exchangerate     | double precision      | 
+ dcn              | text                  | 
+ bank_id          | integer               | 
+ paymentmethod_id | integer               | 
+Indexes:
+    "ap_employee_id_key" btree (employee_id)
+    "ap_id_key" btree (id)
+    "ap_invnumber_key" btree (invnumber)
+    "ap_ordnumber_key" btree (ordnumber)
+    "ap_quonumber_key" btree (quonumber)
+    "ap_transdate_key" btree (transdate)
+    "ap_vendor_id_key" btree (vendor_id)
+
+
+==
+ar
+==
+
+      Column      |         Type          |            Modifiers            
+------------------+-----------------------+---------------------------------
+ id               | integer               | default nextval('id'::regclass)
+ invnumber        | text                  | 
+ transdate        | date                  | default ('now'::text)::date
+ customer_id      | integer               | 
+ taxincluded      | boolean               | 
+ amount           | double precision      | 
+ netamount        | double precision      | 
+ paid             | double precision      | 
+ datepaid         | date                  | 
+ duedate          | date                  | 
+ invoice          | boolean               | default false
+ shippingpoint    | text                  | 
+ terms            | smallint              | default 0
+ notes            | text                  | 
+ curr             | character(3)          | 
+ ordnumber        | text                  | 
+ employee_id      | integer               | 
+ till             | character varying(20) | 
+ quonumber        | text                  | 
+ intnotes         | text                  | 
+ department_id    | integer               | default 0
+ shipvia          | text                  | 
+ language_code    | character varying(6)  | 
+ ponumber         | text                  | 
+ approved         | boolean               | default true
+ cashdiscount     | real                  | 
+ discountterms    | smallint              | 
+ waybill          | text                  | 
+ warehouse_id     | integer               | 
+ description      | text                  | 
+ onhold           | boolean               | default false
+ exchangerate     | double precision      | 
+ dcn              | text                  | 
+ bank_id          | integer               | 
+ paymentmethod_id | integer               | 
+Indexes:
+    "ar_customer_id_key" btree (customer_id)
+    "ar_employee_id_key" btree (employee_id)
+    "ar_id_key" btree (id)
+    "ar_invnumber_key" btree (invnumber)
+    "ar_ordnumber_key" btree (ordnumber)
+    "ar_quonumber_key" btree (quonumber)
+    "ar_transdate_key" btree (transdate)
+
+
+========
+assembly
+========
+
+  Column  |       Type       |                Modifiers                
+----------+------------------+-----------------------------------------
+ id       | integer          | default nextval('assemblyid'::regclass)
+ parts_id | integer          | 
+ qty      | double precision | 
+ bom      | boolean          | 
+ adj      | boolean          | 
+ aid      | integer          | 
+Indexes:
+    "assembly_id_key" btree (id)
+
+
+==========
+audittrail
+==========
+
+   Column    |            Type             |   Modifiers   
+-------------+-----------------------------+---------------
+ trans_id    | integer                     | 
+ tablename   | text                        | 
+ reference   | text                        | 
+ formname    | text                        | 
+ action      | text                        | 
+ transdate   | timestamp without time zone | default now()
+ employee_id | integer                     | 
+Indexes:
+    "audittrail_trans_id_key" btree (trans_id)
+
+
+====
+bank
+====
+
+    Column    |         Type          |               Modifiers                
+--------------+-----------------------+----------------------------------------
+ id           | integer               | 
+ name         | character varying(64) | 
+ iban         | character varying(34) | 
+ bic          | character varying(11) | 
+ address_id   | integer               | default nextval('addressid'::regclass)
+ dcn          | text                  | 
+ rvc          | text                  | 
+ membernumber | text                  | 
+
+
+==
+br
+==
+
+   Column    |       Type       |                Modifiers                 
+-------------+------------------+------------------------------------------
+ id          | integer          | not null default nextval('id'::regclass)
+ batchnumber | text             | 
+ description | text             | 
+ batch       | text             | 
+ transdate   | date             | default ('now'::text)::date
+ apprdate    | date             | 
+ amount      | double precision | 
+ managerid   | integer          | 
+ employee_id | integer          | 
+Indexes:
+    "br_pkey" PRIMARY KEY, btree (id)
+
+
+========
+business
+========
+
+   Column    |  Type   |            Modifiers            
+-------------+---------+---------------------------------
+ id          | integer | default nextval('id'::regclass)
+ description | text    | 
+ discount    | real    | 
+
+
+=====
+cargo
+=====
+
+   Column    |       Type       | Modifiers 
+-------------+------------------+-----------
+ id          | integer          | not null
+ trans_id    | integer          | not null
+ package     | text             | 
+ netweight   | double precision | 
+ grossweight | double precision | 
+ volume      | double precision | 
+Indexes:
+    "cargo_id_key" btree (id, trans_id)
+
+
+=====
+chart
+=====
+
+   Column    |     Type     |            Modifiers            
+-------------+--------------+---------------------------------
+ id          | integer      | default nextval('id'::regclass)
+ accno       | text         | not null
+ description | text         | 
+ charttype   | character(1) | default 'A'::bpchar
+ category    | character(1) | 
+ link        | text         | 
+ gifi_accno  | text         | 
+ contra      | boolean      | default false
+Indexes:
+    "chart_accno_key" UNIQUE, btree (accno)
+    "chart_category_key" btree (category)
+    "chart_gifi_accno_key" btree (gifi_accno)
+    "chart_id_key" btree (id)
+    "chart_link_key" btree (link)
+
+
+=======
+contact
+=======
+
+    Column     |         Type          |                    Modifiers                    
+---------------+-----------------------+-------------------------------------------------
+ id            | integer               | not null default nextval('contactid'::regclass)
+ trans_id      | integer               | not null
+ salutation    | character varying(32) | 
+ firstname     | character varying(32) | 
+ lastname      | character varying(32) | 
+ contacttitle  | character varying(32) | 
+ occupation    | character varying(32) | 
+ phone         | character varying(20) | 
+ fax           | character varying(20) | 
+ mobile        | character varying(20) | 
+ email         | text                  | 
+ gender        | character(1)          | default 'M'::bpchar
+ parent_id     | integer               | 
+ typeofcontact | character varying(20) | 
+Indexes:
+    "contact_pkey" PRIMARY KEY, btree (id)
+
+====
+curr
+====
+
+  Column   |     Type     | Modifiers 
+-----------+--------------+-----------
+ rn        | integer      | 
+ curr      | character(3) | not null
+ precision | smallint     | 
+Indexes:
+    "curr_pkey" PRIMARY KEY, btree (curr)
+
+
+========
+customer
+========
+
+      Column       |         Type          |                Modifiers                 
+-------------------+-----------------------+------------------------------------------
+ id                | integer               | not null default nextval('id'::regclass)
+ name              | character varying(64) | 
+ contact           | character varying(64) | 
+ phone             | character varying(20) | 
+ fax               | character varying(20) | 
+ email             | text                  | 
+ notes             | text                  | 
+ terms             | smallint              | default 0
+ taxincluded       | boolean               | default false
+ customernumber    | character varying(32) | 
+ cc                | text                  | 
+ bcc               | text                  | 
+ business_id       | integer               | 
+ taxnumber         | character varying(32) | 
+ sic_code          | character varying(6)  | 
+ discount          | real                  | 
+ creditlimit       | double precision      | default 0
+ iban              | character varying(34) | 
+ bic               | character varying(11) | 
+ employee_id       | integer               | 
+ language_code     | character varying(6)  | 
+ pricegroup_id     | integer               | 
+ curr              | character(3)          | 
+ startdate         | date                  | 
+ enddate           | date                  | 
+ arap_accno_id     | integer               | 
+ payment_accno_id  | integer               | 
+ discount_accno_id | integer               | 
+ cashdiscount      | real                  | 
+ discountterms     | smallint              | 
+ threshold         | double precision      | 
+ paymentmethod_id  | integer               | 
+ remittancevoucher | boolean               | 
+Indexes:
+    "customer_pkey" PRIMARY KEY, btree (id)
+    "customer_contact_key" btree (lower(contact::text))
+    "customer_customernumber_key" btree (customernumber)
+    "customer_name_key" btree (lower(name::text))
+
+
+===========
+customertax
+===========
+
+   Column    |  Type   | Modifiers 
+-------------+---------+-----------
+ customer_id | integer | 
+ chart_id    | integer | 
+Indexes:
+    "customer_customer_id_key" btree (customer_id)
+
+
+========
+defaults
+========
+
+  Column  | Type | Modifiers 
+----------+------+-----------
+ fldname  | text | 
+ fldvalue | text | 
+
+
+
+==========
+department
+==========
+
+   Column    |     Type     |            Modifiers            
+-------------+--------------+---------------------------------
+ id          | integer      | default nextval('id'::regclass)
+ description | text         | 
+ role        | character(1) | default 'P'::bpchar
+Indexes:
+    "department_id_key" btree (id)
+
+
+=========
+dpt_trans
+=========
+
+    Column     |  Type   | Modifiers 
+---------------+---------+-----------
+ trans_id      | integer | 
+ department_id | integer | 
+
+
+========
+employee
+========
+
+     Column     |         Type          |            Modifiers            
+----------------+-----------------------+---------------------------------
+ id             | integer               | default nextval('id'::regclass)
+ login          | text                  | 
+ name           | character varying(64) | 
+ address1       | character varying(32) | 
+ address2       | character varying(32) | 
+ city           | character varying(32) | 
+ state          | character varying(32) | 
+ zipcode        | character varying(10) | 
+ country        | character varying(32) | 
+ workphone      | character varying(20) | 
+ workfax        | character varying(20) | 
+ workmobile     | character varying(20) | 
+ homephone      | character varying(20) | 
+ startdate      | date                  | default ('now'::text)::date
+ enddate        | date                  | 
+ notes          | text                  | 
+ role           | character varying(20) | 
+ sales          | boolean               | default false
+ email          | text                  | 
+ ssn            | character varying(20) | 
+ iban           | character varying(34) | 
+ bic            | character varying(11) | 
+ managerid      | integer               | 
+ employeenumber | character varying(32) | 
+ dob            | date                  | 
+Indexes:
+    "employee_login_key" UNIQUE, btree ("login")
+    "employee_id_key" btree (id)
+    "employee_name_key" btree (lower(name::text))
+
+
+============
+exchangerate
+============
+
+  Column   |       Type       | Modifiers 
+-----------+------------------+-----------
+ curr      | character(3)     | 
+ transdate | date             | 
+ buy       | double precision | 
+ sell      | double precision | 
+Indexes:
+    "exchangerate_ct_key" btree (curr, transdate)
+
+====
+gifi
+====
+
+   Column    | Type | Modifiers 
+-------------+------+-----------
+ accno       | text | 
+ description | text | 
+Indexes:
+    "gifi_accno_key" UNIQUE, btree (accno)
+
+
+==
+gl
+==
+    Column     |       Type       |            Modifiers            
+---------------+------------------+---------------------------------
+ id            | integer          | default nextval('id'::regclass)
+ reference     | text             | 
+ description   | text             | 
+ transdate     | date             | default ('now'::text)::date
+ employee_id   | integer          | 
+ notes         | text             | 
+ department_id | integer          | default 0
+ approved      | boolean          | default true
+ curr          | character(3)     | 
+ exchangerate  | double precision | 
+Indexes:
+    "gl_description_key" btree (lower(description))
+    "gl_employee_id_key" btree (employee_id)
+    "gl_id_key" btree (id)
+    "gl_reference_key" btree (reference)
+    "gl_transdate_key" btree (transdate)
+
+
+=========
+inventory
+=========
+
+    Column     |       Type       |                Modifiers                 
+---------------+------------------+------------------------------------------
+ id            | integer          | default nextval('inventoryid'::regclass)
+ warehouse_id  | integer          | 
+ parts_id      | integer          | 
+ trans_id      | integer          | 
+ orderitems_id | integer          | 
+ qty           | double precision | 
+ shippingdate  | date             | 
+ employee_id   | integer          | 
+ department_id | integer          | 
+ warehouse_id2 | integer          | 
+ serialnumber  | text             | 
+ itemnotes     | text             | 
+ cost          | integer          | 
+ linetype      | character(1)     | default '0'::bpchar
+Indexes:
+    "inventory_parts_id_key" btree (parts_id)
+
+
+=======
+invoice
+=======
+
+     Column     |         Type         |               Modifiers                
+----------------+----------------------+----------------------------------------
+ id             | integer              | default nextval('invoiceid'::regclass)
+ trans_id       | integer              | 
+ parts_id       | integer              | 
+ description    | text                 | 
+ qty            | double precision     | 
+ allocated      | double precision     | 
+ sellprice      | double precision     | 
+ fxsellprice    | double precision     | 
+ discount       | real                 | 
+ assemblyitem   | boolean              | default false
+ unit           | character varying(5) | 
+ project_id     | integer              | 
+ deliverydate   | date                 | 
+ serialnumber   | text                 | 
+ itemnotes      | text                 | 
+ lineitemdetail | boolean              | 
+Indexes:
+    "invoice_id_key" btree (id)
+    "invoice_trans_id_key" btree (trans_id)
+
+
+=======
+jcitems
+=======
+
+    Column    |           Type           |               Modifiers                
+--------------+--------------------------+----------------------------------------
+ id           | integer                  | default nextval('jcitemsid'::regclass)
+ project_id   | integer                  | 
+ parts_id     | integer                  | 
+ description  | text                     | 
+ qty          | double precision         | 
+ allocated    | double precision         | 
+ sellprice    | double precision         | 
+ fxsellprice  | double precision         | 
+ serialnumber | text                     | 
+ checkedin    | timestamp with time zone | 
+ checkedout   | timestamp with time zone | 
+ employee_id  | integer                  | 
+ notes        | text                     | 
+Indexes:
+    "jcitems_id_key" btree (id)
+
+
+
+========
+language
+========
+
+   Column    |         Type         | Modifiers 
+-------------+----------------------+-----------
+ code        | character varying(6) | 
+ description | text                 | 
+Indexes:
+    "language_code_key" UNIQUE, btree (code)
+
+
+=========
+makemodel
+=========
+
+  Column  |  Type   | Modifiers 
+----------+---------+-----------
+ parts_id | integer | 
+ make     | text    | 
+ model    | text    | 
+Indexes:
+    "makemodel_make_key" btree (lower(make))
+    "makemodel_model_key" btree (lower(model))
+    "makemodel_parts_id_key" btree (parts_id)
+
+
+==
+oe
+==
+    Column     |         Type         |            Modifiers            
+---------------+----------------------+---------------------------------
+ id            | integer              | default nextval('id'::regclass)
+ ordnumber     | text                 | 
+ transdate     | date                 | default ('now'::text)::date
+ vendor_id     | integer              | 
+ customer_id   | integer              | 
+ amount        | double precision     | 
+ netamount     | double precision     | 
+ reqdate       | date                 | 
+ taxincluded   | boolean              | 
+ shippingpoint | text                 | 
+ notes         | text                 | 
+ curr          | character(3)         | 
+ employee_id   | integer              | 
+ closed        | boolean              | default false
+ quotation     | boolean              | default false
+ quonumber     | text                 | 
+ intnotes      | text                 | 
+ department_id | integer              | default 0
+ shipvia       | text                 | 
+ language_code | character varying(6) | 
+ ponumber      | text                 | 
+ terms         | smallint             | default 0
+ waybill       | text                 | 
+ warehouse_id  | integer              | 
+ description   | text                 | 
+ aa_id         | integer              | 
+ exchangerate  | double precision     | 
+Indexes:
+    "oe_employee_id_key" btree (employee_id)
+    "oe_id_key" btree (id)
+    "oe_ordnumber_key" btree (ordnumber)
+    "oe_transdate_key" btree (transdate)
+
+
+==========
+orderitems
+==========
+
+     Column     |         Type         |                 Modifiers                 
+----------------+----------------------+-------------------------------------------
+ id             | integer              | default nextval('orderitemsid'::regclass)
+ trans_id       | integer              | 
+ parts_id       | integer              | 
+ description    | text                 | 
+ qty            | double precision     | 
+ sellprice      | double precision     | 
+ discount       | real                 | 
+ unit           | character varying(5) | 
+ project_id     | integer              | 
+ reqdate        | date                 | 
+ ship           | double precision     | 
+ serialnumber   | text                 | 
+ itemnotes      | text                 | 
+ lineitemdetail | boolean              | 
+Indexes:
+    "orderitems_trans_id_key" btree (trans_id)
+
+
+=====
+parts
+=====
+
+       Column       |         Type         |            Modifiers            
+--------------------+----------------------+---------------------------------
+ id                 | integer              | default nextval('id'::regclass)
+ partnumber         | text                 | 
+ description        | text                 | 
+ unit               | character varying(5) | 
+ listprice          | double precision     | 
+ sellprice          | double precision     | 
+ lastcost           | double precision     | 
+ priceupdate        | date                 | default ('now'::text)::date
+ weight             | double precision     | 
+ onhand             | double precision     | default 0
+ notes              | text                 | 
+ makemodel          | boolean              | default false
+ assembly           | boolean              | default false
+ alternate          | boolean              | default false
+ rop                | double precision     | 
+ inventory_accno_id | integer              | 
+ income_accno_id    | integer              | 
+ expense_accno_id   | integer              | 
+ bin                | text                 | 
+ obsolete           | boolean              | default false
+ bom                | boolean              | default false
+ image              | text                 | 
+ drawing            | text                 | 
+ microfiche         | text                 | 
+ partsgroup_id      | integer              | 
+ project_id         | integer              | 
+ avgcost            | double precision     | 
+ tariff_hscode      | text                 | 
+ countryorigin      | text                 | 
+ barcode            | text                 | 
+ toolnumber         | text                 | 
+Indexes:
+    "parts_description_key" btree (lower(description))
+    "parts_id_key" btree (id)
+    "parts_partnumber_key" btree (lower(partnumber))
+
+
+=============
+partscustomer
+=============
+
+    Column     |       Type       | Modifiers 
+---------------+------------------+-----------
+ parts_id      | integer          | 
+ customer_id   | integer          | 
+ pricegroup_id | integer          | 
+ pricebreak    | double precision | 
+ sellprice     | double precision | 
+ validfrom     | date             | 
+ validto       | date             | 
+ curr          | character(3)     | 
+Indexes:
+    "partscustomer_customer_id_key" btree (customer_id)
+    "partscustomer_parts_id_key" btree (parts_id)
+
+==========
+partsgroup
+==========
+
+   Column   |  Type   |            Modifiers            
+------------+---------+---------------------------------
+ id         | integer | default nextval('id'::regclass)
+ partsgroup | text    | 
+ pos        | boolean | default true
+Indexes:
+    "partsgroup_key" UNIQUE, btree (partsgroup)
+    "partsgroup_id_key" btree (id)
+
+
+========
+partstax
+========
+
+  Column  |  Type   | Modifiers 
+----------+---------+-----------
+ parts_id | integer | 
+ chart_id | integer | 
+Indexes:
+    "partstax_parts_id_key" btree (parts_id)
+
+
+===========
+partsvendor
+===========
+
+   Column   |       Type       | Modifiers 
+------------+------------------+-----------
+ vendor_id  | integer          | 
+ parts_id   | integer          | 
+ partnumber | text             | 
+ leadtime   | smallint         | 
+ lastcost   | double precision | 
+ curr       | character(3)     | 
+Indexes:
+    "partsvendor_parts_id_key" btree (parts_id)
+    "partsvendor_vendor_id_key" btree (vendor_id)
+
+
+=======
+payment
+=======
+
+      Column      |       Type       | Modifiers 
+------------------+------------------+-----------
+ id               | integer          | not null
+ trans_id         | integer          | not null
+ exchangerate     | double precision | default 1
+ paymentmethod_id | integer          | 
+
+
+=============
+paymentmethod
+=============
+
+   Column    |       Type       |                Modifiers                 
+-------------+------------------+------------------------------------------
+ id          | integer          | not null default nextval('id'::regclass)
+ description | text             | 
+ fee         | double precision | 
+ rn          | integer          | 
+Indexes:
+    "paymentmethod_pkey" PRIMARY KEY, btree (id)
+
+
+==========
+pricegroup
+==========
+
+   Column   |  Type   |            Modifiers            
+------------+---------+---------------------------------
+ id         | integer | default nextval('id'::regclass)
+ pricegroup | text    | 
+Indexes:
+    "pricegroup_id_key" btree (id)
+    "pricegroup_pricegroup_key" btree (pricegroup)
+
+
+=======
+project
+=======
+
+    Column     |       Type       |            Modifiers            
+---------------+------------------+---------------------------------
+ id            | integer          | default nextval('id'::regclass)
+ projectnumber | text             | 
+ description   | text             | 
+ startdate     | date             | 
+ enddate       | date             | 
+ parts_id      | integer          | 
+ production    | double precision | default 0
+ completed     | double precision | default 0
+ customer_id   | integer          | 
+Indexes:
+    "projectnumber_key" UNIQUE, btree (projectnumber)
+    "project_id_key" btree (id)
+
+
+=========
+recurring
+=========
+
+   Column    |         Type         |   Modifiers   
+-------------+----------------------+---------------
+ id          | integer              | 
+ reference   | text                 | 
+ startdate   | date                 | 
+ nextdate    | date                 | 
+ enddate     | date                 | 
+ repeat      | smallint             | 
+ unit        | character varying(6) | 
+ howmany     | integer              | 
+ payment     | boolean              | default false
+ description | text                 | 
+
+
+==============
+recurringemail
+==============
+
+  Column  |  Type   | Modifiers 
+----------+---------+-----------
+ id       | integer | 
+ formname | text    | 
+ format   | text    | 
+ message  | text    | 
+
+
+==============
+recurringprint
+==============
+
+  Column  |  Type   | Modifiers 
+----------+---------+-----------
+ id       | integer | 
+ formname | text    | 
+ format   | text    | 
+ printer  | text    | 
+
+
+=========
+semaphore
+=========
+
+ Column  |         Type          | Modifiers 
+---------+-----------------------+-----------
+ id      | integer               | 
+ login   | text                  | 
+ module  | text                  | 
+ expires | character varying(10) | 
+
+
+======
+shipto
+======
+
+     Column     |         Type          | Modifiers 
+----------------+-----------------------+-----------
+ trans_id       | integer               | 
+ shiptoname     | character varying(64) | 
+ shiptoaddress1 | character varying(32) | 
+ shiptoaddress2 | character varying(32) | 
+ shiptocity     | character varying(32) | 
+ shiptostate    | character varying(32) | 
+ shiptozipcode  | character varying(10) | 
+ shiptocountry  | character varying(32) | 
+ shiptocontact  | character varying(64) | 
+ shiptophone    | character varying(20) | 
+ shiptofax      | character varying(20) | 
+ shiptoemail    | text                  | 
+Indexes:
+    "shipto_trans_id_key" btree (trans_id)
+
+===
+sic
+===
+
+   Column    |         Type         | Modifiers 
+-------------+----------------------+-----------
+ code        | character varying(6) | 
+ sictype     | character(1)         | 
+ description | text                 | 
+
+
+======
+status
+======
+
+  Column   |  Type   |   Modifiers   
+-----------+---------+---------------
+ trans_id  | integer | 
+ formname  | text    | 
+ printed   | boolean | default false
+ emailed   | boolean | default false
+ spoolfile | text    | 
+Indexes:
+    "status_trans_id_key" btree (trans_id)
+
+===
+tax
+===
+
+  Column   |       Type       | Modifiers 
+-----------+------------------+-----------
+ chart_id  | integer          | 
+ rate      | double precision | 
+ taxnumber | text             | 
+ validto   | date             | 
+
+
+===========
+translation
+===========
+
+    Column     |         Type         | Modifiers 
+---------------+----------------------+-----------
+ trans_id      | integer              | 
+ language_code | character varying(6) | 
+ description   | text                 | 
+Indexes:
+    "translation_trans_id_key" btree (trans_id)
+
+===
+trf
+===
+
+      Column       |  Type   |                    Modifiers                     
+-------------------+---------+--------------------------------------------------
+ id                | integer | not null default nextval(('id'::text)::regclass)
+ transdate         | date    | 
+ trfnumber         | text    | 
+ description       | text    | 
+ notes             | text    | 
+ department_id     | integer | 
+ from_warehouse_id | integer | 
+ to_warehouse_id   | integer | default 0
+ employee_id       | integer | default 0
+Indexes:
+    "trf_pkey" PRIMARY KEY, btree (id)
+
+
+======
+vendor
+======
+      Column       |         Type          |                Modifiers                 
+-------------------+-----------------------+------------------------------------------
+ id                | integer               | not null default nextval('id'::regclass)
+ name              | character varying(64) | 
+ contact           | character varying(64) | 
+ phone             | character varying(20) | 
+ fax               | character varying(20) | 
+ email             | text                  | 
+ notes             | text                  | 
+ terms             | smallint              | default 0
+ taxincluded       | boolean               | default false
+ vendornumber      | character varying(32) | 
+ cc                | text                  | 
+ bcc               | text                  | 
+ gifi_accno        | character varying(30) | 
+ business_id       | integer               | 
+ taxnumber         | character varying(32) | 
+ sic_code          | character varying(6)  | 
+ discount          | real                  | 
+ creditlimit       | double precision      | default 0
+ iban              | character varying(34) | 
+ bic               | character varying(11) | 
+ employee_id       | integer               | 
+ language_code     | character varying(6)  | 
+ pricegroup_id     | integer               | 
+ curr              | character(3)          | 
+ startdate         | date                  | 
+ enddate           | date                  | 
+ arap_accno_id     | integer               | 
+ payment_accno_id  | integer               | 
+ discount_accno_id | integer               | 
+ cashdiscount      | real                  | 
+ discountterms     | smallint              | 
+ threshold         | double precision      | 
+ paymentmethod_id  | integer               | 
+ remittancevoucher | boolean               | 
+Indexes:
+    "vendor_pkey" PRIMARY KEY, btree (id)
+    "vendor_contact_key" btree (lower(contact::text))
+    "vendor_name_key" btree (lower(name::text))
+    "vendor_vendornumber_key" btree (vendornumber)
+
+
+=========
+vendortax
+=========
+
+  Column   |  Type   | Modifiers 
+-----------+---------+-----------
+ vendor_id | integer | 
+ chart_id  | integer | 
+Indexes:
+    "vendortax_vendor_id_key" btree (vendor_id)
+
+
+==
+vr
+==
+
+    Column     |  Type   |                Modifiers                 
+---------------+---------+------------------------------------------
+ br_id         | integer | 
+ trans_id      | integer | not null
+ id            | integer | not null default nextval('id'::regclass)
+ vouchernumber | text    | 
+Foreign-key constraints:
+    "vr_br_id_fkey" FOREIGN KEY (br_id) REFERENCES br(id) ON DELETE CASCADE
+
+
+=========
+warehouse
+=========
+
+   Column    |  Type   |            Modifiers            
+-------------+---------+---------------------------------
+ id          | integer | default nextval('id'::regclass)
+ description | text    | 
+
+
+=======
+yearend
+=======
+
+  Column   |  Type   | Modifiers 
+-----------+---------+-----------
+ trans_id  | integer | 
+ transdate | date    | 
+

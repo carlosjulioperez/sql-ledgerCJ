@@ -1,0 +1,19 @@
+$self{charset} = 'UTF-8';
+
+$self{texts} = {
+  'Continue'                    => 'Continuar',
+  'From'                        => 'De',
+  'Name'                        => 'Nombre',
+  'Sales Graph'                 => 'Gráfico de Ventas',
+  'To'                          => 'Hasta ',
+};
+
+$self{subs} = {
+  'continue'                    => 'continue',
+  'sales_graph'                 => 'sales_graph',
+  'sales_search'                => 'sales_search',
+  'continuar'                   => 'continue',
+};
+
+1;
+

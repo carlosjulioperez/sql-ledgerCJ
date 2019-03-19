@@ -1,0 +1,43 @@
+$self{charset} = 'UTF-8';
+
+$self{texts} = {
+  'AP'                          => 'CPP',
+  'Amount'                      => 'Total',
+  'Continue'                    => 'Continuar',
+  'Currency'                    => 'Moneda',
+  'Date'                        => 'Fecha',
+  'Department'                  => 'Departamento',
+  'Due Date'                    => 'Fecha Vencimiento',
+  'From'                        => 'De',
+  'Invoice'                     => 'Factura de Venta',
+  'Invoice Date From'           => 'Fecha de Factura desde',
+  'Invoice Date To'             => 'Fecha de Factura hasta',
+  'Memo'                        => 'Memo',
+  'Move to'                     => 'Mover a',
+  'Name'                        => 'Nombre',
+  'Paid'                        => 'Pagado',
+  'Payment'                     => 'Payment',
+  'Payments'                    => 'Pagos',
+  'Petty Cash Vendor'           => 'Proveedor de Caja Chica',
+  'Source'                      => 'Fuente',
+  'To'                          => 'Hasta ',
+  'Update'                      => 'Actualizar',
+  'Vendor'                      => 'Proveedor',
+};
+
+$self{subs} = {
+  'calc_total'                  => 'calc_total',
+  'continue'                    => 'continue',
+  'deselect_all'                => 'deselect_all',
+  'form_header'                 => 'form_header',
+  'invoices_search'             => 'invoices_search',
+  'move_to'                     => 'move_to',
+  'select_all'                  => 'select_all',
+  'update'                      => 'update',
+  'continuar'                   => 'continue',
+  'mover_a'                     => 'move_to',
+  'actualizar'                  => 'update',
+};
+
+1;
+

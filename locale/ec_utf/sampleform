@@ -1,0 +1,47 @@
+$self{charset} = 'UTF-8';
+
+$self{texts} = {
+  'Are you sure you want to delete Transaction ' => '¿Está seguro de Borrar la Transacción?',
+  'Confirm!'                    => 'Confirmar',
+  'Transaction deleted!'        => '¡Transacción borrada!',
+  'Transaction saved!'          => '¡Transacción grabada!',
+  'Yes'                         => 'Si',
+};
+
+$self{subs} = {
+  'add'                         => 'add',
+  'add_button'                  => 'add_button',
+  'begin_data_row'              => 'begin_data_row',
+  'begin_heading_row'           => 'begin_heading_row',
+  'begin_total_row'             => 'begin_total_row',
+  'continue'                    => 'continue',
+  'delete'                      => 'delete',
+  'display_form'                => 'display_form',
+  'edit'                        => 'edit',
+  'end_form'                    => 'end_form',
+  'end_page'                    => 'end_page',
+  'end_row'                     => 'end_row',
+  'end_table'                   => 'end_table',
+  'print_form_date'             => 'print_form_date',
+  'print_form_text'             => 'print_form_text',
+  'print_header'                => 'print_header',
+  'print_heading'               => 'print_heading',
+  'print_hidden'                => 'print_hidden',
+  'print_integer'               => 'print_integer',
+  'print_number'                => 'print_number',
+  'print_select'                => 'print_select',
+  'print_text'                  => 'print_text',
+  'report'                      => 'report',
+  'save'                        => 'save',
+  'save_as_new'                 => 'save_as_new',
+  'search'                      => 'search',
+  'select_parts'                => 'select_parts',
+  'start_form'                  => 'start_form',
+  'start_table'                 => 'start_table',
+  'update'                      => 'update',
+  'yes'                         => 'yes',
+  'si'                          => 'yes',
+};
+
+1;
+
