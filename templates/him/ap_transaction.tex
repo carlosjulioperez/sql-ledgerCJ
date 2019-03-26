@@ -1,7 +1,7 @@
 \documentclass[10pt,letterpaper,oneside,onecolumn]{scrartcl}
 \usepackage[frame]{xy}
 \usepackage{tabularx}
-\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \setlength{\voffset}{0.5cm}
 \setlength{\hoffset}{-1.9cm}
@@ -35,7 +35,7 @@
   }
   \parbox[b]{.2\textwidth}{
 %    \includegraphics[scale=0.3]{sql-ledger}
-     \includegraphics[scale=0.3]{../<%templates%>/<%language_code%>/logo}
+    \includegraphics[scale=0.3]{../<%templates%>/<%language_code%>/logo}
   }\hfill
   \begin{tabular}[b]{rr@{}}
   Telephone & <%tel%>\\
@@ -45,7 +45,7 @@
   \rule[1.5em]{\textwidth}{0.5pt}
 }
 
-\centerline{\textbf{A P} \hspace{0.3cm} \textbf{T R A N S A C T I O N \# <%id%>}}
+\centerline{\textbf{A P} \hspace{0.3cm} \textbf{T R A N S A C T I O N}}
 
 %\vspace*{0.5cm}
 \vspace*{0.2cm}
@@ -88,7 +88,7 @@ Fax: <%customerfax%>
   \textbf{Employee} & <%employee%> \\
 \end{tabular}
 
-%\vspace{1cm}
+% \vspace{1cm}
 \vspace{0.3cm}
 
 \begin{tabularx}{.5\textwidth}[t]{@{}llrl@{}}
